@@ -8,6 +8,10 @@ public class Card {
         this.type = type;
         reversed = false;
     }
+    public Card(Card toCopy) {
+        this.type = toCopy.getType();
+        this.reversed = toCopy.isReversed();
+    }
     public Card reverse() {
         this.reversed = !reversed;
         return this;
