@@ -10,14 +10,21 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public enum ActionSubtype {
-    UNKOWN(null, null, null, null, null),
-    PASTPRESENTFUTURE(ActionType.READ, "ppf", "Past/Present/Future", "A reading of your past, present, and future",
+    UNKOWN(null, null, null, null),
+    PASTPRESENTFUTURE("ppf", "Past/Present/Future", "A reading of your past, present, and future",
             (State state) -> { return (new PastPresentFutureReading(state.getDeck())).read(); });
 
-    public static final Set<ActionType> ACTION_TYPES_WITH_SUBTYPES = Arrays.stream(values())
-            .map(ActionSubtype::getSubActionOf)
-            .filter(Objects::nonNull)
-            .collect(Collectors.toSet());
+
+    // You must put the parents into this static method because it executes after the construction of both enums
+    public static final Set<ActionType> ACTION_TYPES_WITH_SUBACTIONS;
+    static {
+        PASTPRESENTFUTURE.setSubActionOf(ActionType.READ);
+
+        ACTION_TYPES_WITH_SUBACTIONS = Arrays.stream(ActionSubtype.values())
+                .map(ActionSubtype::getSubActionOf)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+    }
 
 
 
@@ -26,8 +33,7 @@ public enum ActionSubtype {
     private String name;
     private String description;
     private Function<State, String> actionFunction;
-    ActionSubtype(ActionType parentAction, String command, String name, String description, Function<State, String> actionFunction) {
-        this.subActionOf = parentAction;
+    ActionSubtype(String command, String name, String description, Function<State, String> actionFunction) {
         this.command = command;
         this.name = name;
         this.description = description;
@@ -52,5 +58,9 @@ public enum ActionSubtype {
 
     public String performSubaction(State state) {
         return actionFunction.apply(state);
+    }
+
+    void setSubActionOf(ActionType parent) {
+        this.subActionOf = parent;
     }
 }

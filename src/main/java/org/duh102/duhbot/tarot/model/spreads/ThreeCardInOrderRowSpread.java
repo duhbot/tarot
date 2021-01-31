@@ -17,4 +17,16 @@ public class ThreeCardInOrderRowSpread{
         second = cards.get(1);
         third = cards.get(2);
     }
+
+    public Card getFirst() {
+        return first;
+    }
+
+    public Card getSecond() {
+        return second;
+    }
+
+    public Card getThird() {
+        return third;
+    }
 }

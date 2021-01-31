@@ -12,6 +12,6 @@ public class PastPresentFutureReading implements Reading {
 
     @Override
     public String read() {
-        return null;
+        return String.format("You drew %s, %s, and %s", spread.getFirst(), spread.getSecond(), spread.getThird());
     }
 }

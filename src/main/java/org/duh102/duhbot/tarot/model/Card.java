@@ -23,4 +23,8 @@ public class Card {
     public boolean isReversed() {
         return reversed;
     }
+
+    public String toString() {
+        return String.format("%s%s", type.getProperName(), isReversed()? " in reverse": "");
+    }
 }

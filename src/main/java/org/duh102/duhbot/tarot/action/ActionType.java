@@ -1,15 +1,20 @@
 package org.duh102.duhbot.tarot.action;
 
 public enum ActionType {
-    UNKNOWN(null, "Unknown action", null),
-    READ("read", "Performs a tarot reading; see sub-commands for specific help", ActionSubtype.PASTPRESENTFUTURE);
+    UNKNOWN(null, "Unknown action"),
+    READ("read", "Performs a tarot reading; see sub-commands for specific help");
+
+    // You must put the default subs into this static method because it executes after the construction of both enums
+    static {
+        READ.setDefaultSub(ActionSubtype.PASTPRESENTFUTURE);
+    }
+
     private String actionString;
     private String description;
     private ActionSubtype defaultSub;
-    ActionType(String actionString, String description, ActionSubtype defaultSub) {
+    ActionType(String actionString, String description) {
         this.actionString = actionString;
         this.description = description;
-        this.defaultSub = defaultSub;
     }
 
     public String getActionString() {
@@ -23,5 +28,8 @@ public enum ActionType {
     }
     public ActionSubtype getDefault() {
         return defaultSub;
+    }
+    void setDefaultSub(ActionSubtype sub) {
+        defaultSub = sub;
     }
 }

@@ -3,14 +3,10 @@ package org.duh102.duhbot.tarot.action;
 import org.duh102.duhbot.tarot.model.Pair;
 import org.duh102.duhbot.tarot.model.State;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.duh102.duhbot.tarot.action.ActionSubtype.ACTION_TYPES_WITH_SUBTYPES;
-import static org.duh102.duhbot.tarot.action.ActionSubtype.UNKOWN;
+import java.util.*;
 
 public class Action {
-    public static String prefix = ".tarot";
+    public static String PREFIX = ".tarot";
     private static Map<String, String> help = null;
     private static final Integer helpLock = 1;
 
@@ -19,23 +15,29 @@ public class Action {
     public Pair<ActionType, ActionSubtype> parseCommand(String toParse) {
         String[] parts = toParse.toLowerCase().trim().split("[ \t]");
 
-        if(parts.length <2 || !prefix.equals(parts[0])) {
+        if(parts.length <2 || !PREFIX.equals(parts[0])) {
             return null;
         }
         ActionType action = ActionType.UNKNOWN;
         ActionSubtype subtype = null;
         for(ActionType type : ActionType.values()) {
+            if(type == ActionType.UNKNOWN) {
+                continue;
+            }
             if(type.getActionString().equals(parts[1])) {
                 action = type;
                 break;
             }
         }
-        if(ACTION_TYPES_WITH_SUBTYPES.contains(action)) {
+        if(ActionSubtype.ACTION_TYPES_WITH_SUBACTIONS.contains(action)) {
             if(!action.hasDefault()) {
-                subtype = UNKOWN;
+                subtype = ActionSubtype.UNKOWN;
             }
             if(parts.length > 2) {
                 for(ActionSubtype type : ActionSubtype.values()) {
+                    if(type == ActionSubtype.UNKOWN) {
+                        continue;
+                    }
                     if(type.getSubActionOf() != action) {
                         continue;
                     }
@@ -48,11 +50,11 @@ public class Action {
                 subtype = action.getDefault();
             }
         }
-        return new Pair(action, subtype);
+        return new Pair<>(action, subtype);
     }
 
     public boolean shouldAnswer(String message) {
-        return message.toLowerCase().trim().startsWith(prefix);
+        return message.toLowerCase().trim().startsWith(PREFIX);
     }
 
     public String performAction(String message) {
@@ -65,7 +67,7 @@ public class Action {
         if(action == ActionType.UNKNOWN) {
             return "Unknown action, seek help";
         }
-        if(actionSubtype == UNKOWN) {
+        if(actionSubtype == ActionSubtype.UNKOWN) {
             return String.format("Unkown sub-action of %s, seek help", action.getActionString());
         }
         switch(action) {
@@ -91,6 +93,10 @@ public class Action {
         // Prepare all the sub-action help texts, which also builds the defaults table
         // The first sub-action listed in the enum is determined to be the default
         for(ActionSubtype subType : ActionSubtype.values()) {
+            if(subType == ActionSubtype.UNKOWN) {
+                // Skip the unknown type
+                continue;
+            }
             ActionType subTypeParent = subType.getSubActionOf();
             if(!actionHelp.containsKey(subTypeParent)) {
                 actionHelp.put(subTypeParent, new HashMap<>());
@@ -128,7 +134,7 @@ public class Action {
     }
 
     private String commandHelpString(ActionType command, ActionSubtype subCommand) {
-        return String.format("%s %s%s", prefix, command.getActionString(), subCommand == null? "" : " " + subCommand.getCommand());
+        return String.format("%s %s%s", PREFIX, command.getActionString(), subCommand == null? "" : " " + subCommand.getCommand());
     }
     private String descriptionHelpString(ActionSubtype actionType) {
         return String.format("%s: %s", actionType.getName(), actionType.getDescription());
