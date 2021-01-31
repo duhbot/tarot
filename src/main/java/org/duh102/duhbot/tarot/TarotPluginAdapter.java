@@ -23,7 +23,11 @@ public class TarotPluginAdapter extends ListenerAdapter implements ListeningPlug
     message = Colors.removeFormattingAndColors(event.getMessage());
     if(action.shouldAnswer(message)) {
       try {
-        event.respond(action.performAction(message));
+        String response = action.performAction(message);
+        if(response == null || response.length() == 0) {
+          return;
+        }
+        event.respond(response);
       } catch(Exception e) {
         event.respond("Something happened while retrieving your answer :(");
         e.printStackTrace();

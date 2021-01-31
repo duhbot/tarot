@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public enum ActionSubtype {
     UNKOWN(null, null, null, null),
     PASTPRESENTFUTURE("ppf", "Past/Present/Future", "A reading of your past, present, and future",
-            (State state) -> { return (new PastPresentFutureReading(state.getDeck())).read(); });
+            (State state) -> { return (new PastPresentFutureReading(state)).read(); });
 
 
     // You must put the parents into this static method because it executes after the construction of both enums

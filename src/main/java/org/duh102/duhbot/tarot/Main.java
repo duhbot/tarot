@@ -8,6 +8,6 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
         Action action = new Action();
-        action.parseCommand(Arrays.stream(args).collect(Collectors.joining(" ")));
+        System.out.println(action.performAction(".tarot " + Arrays.stream(args).collect(Collectors.joining(" "))));
     }
 }

@@ -25,6 +25,8 @@ public class Card {
     }
 
     public String toString() {
-        return String.format("%s%s", type.getProperName(), isReversed()? " in reverse": "");
+        return String.format("%s%s (%s)", type.getProperName(), isReversed()?
+                " in reverse": "", isReversed()? type.getReverseMeaning():
+                type.getNormalMeaning());
     }
 }
