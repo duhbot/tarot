@@ -1,0 +1,11 @@
+## binary stuff
+/target/
+.*.swp
+*.class
+
+## ignore stray databases
+*.db
+
+## intellij stuff
+/.idea
+*.iml
