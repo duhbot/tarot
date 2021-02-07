@@ -2,6 +2,7 @@ package org.duh102.duhbot.tarot.action;
 
 import org.duh102.duhbot.tarot.model.State;
 import org.duh102.duhbot.tarot.model.readings.PastPresentFutureReading;
+import org.duh102.duhbot.tarot.model.readings.ThreeCardAdvice;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -11,14 +12,17 @@ import java.util.stream.Collectors;
 
 public enum ActionSubtype {
     UNKOWN(null, null, null, null),
-    PASTPRESENTFUTURE("ppf", "Past/Present/Future", "A reading of your past, present, and future",
-            (State state) -> { return (new PastPresentFutureReading(state)).read(); });
+    PAST_PRESENT_FUTURE("ppf", "Past/Present/Future", "A reading of your past, present, and future",
+            (State state) -> { return (new PastPresentFutureReading(state)).read(); }),
+    THREE_CARD_ADVICE("advice3", "Three-card Advice", "A simple advice reading",
+            (State state) -> { return (new ThreeCardAdvice(state)).read(); });
 
 
     // You must put the parents into this static method because it executes after the construction of both enums
     public static final Set<ActionType> ACTION_TYPES_WITH_SUBACTIONS;
     static {
-        PASTPRESENTFUTURE.setSubActionOf(ActionType.READ);
+        PAST_PRESENT_FUTURE.setSubActionOf(ActionType.READ);
+        THREE_CARD_ADVICE.setSubActionOf(ActionType.READ);
 
         ACTION_TYPES_WITH_SUBACTIONS = Arrays.stream(ActionSubtype.values())
                 .map(ActionSubtype::getSubActionOf)

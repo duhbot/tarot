@@ -36,12 +36,12 @@ public class TestAction {
         parsed = action.parseCommand(Action.PREFIX + " " + ActionType.READ.getActionString());
         assertThat(parsed).isNotNull();
         assertThat(parsed.getFirst()).isEqualTo(ActionType.READ);
-        assertThat(parsed.getSecond()).isEqualTo(ActionSubtype.PASTPRESENTFUTURE);
+        assertThat(parsed.getSecond()).isEqualTo(ActionSubtype.PAST_PRESENT_FUTURE);
 
         // Command with a subtype
-        parsed = action.parseCommand(Action.PREFIX + " " + ActionType.READ.getActionString() + " " + ActionSubtype.PASTPRESENTFUTURE.getCommand());
+        parsed = action.parseCommand(Action.PREFIX + " " + ActionType.READ.getActionString() + " " + ActionSubtype.PAST_PRESENT_FUTURE.getCommand());
         assertThat(parsed).isNotNull();
         assertThat(parsed.getFirst()).isEqualTo(ActionType.READ);
-        assertThat(parsed.getSecond()).isEqualTo(ActionSubtype.PASTPRESENTFUTURE);
+        assertThat(parsed.getSecond()).isEqualTo(ActionSubtype.PAST_PRESENT_FUTURE);
     }
 }

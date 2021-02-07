@@ -72,21 +72,21 @@ public enum CardType {
     KNIGHT_SWORDS("Knight of Swords","action, impulsiveness, defending beliefs", "no direction, disregard for consequences, unpredictability", false),
     QUEEN_SWORDS("Queen of Swords","complexity, perceptiveness, clear mindedness", "cold hearted, cruel, bitterness", false),
     KING_SWORDS("King of Swords","head over heart, discipline, truth", "manipulative, cruel, weakness", false),
-    // Coins
-    ACE_COINS("Ace of Coins","opportunity, prosperity, new venture", "lost opportunity, missed chance, bad investment", false),
-    TWO_COINS("Two of Coins","balancing decisions, priorities, adapting to change", "loss of balance, disorganized, overwhelmed", false),
-    THREE_COINS("Three of Coins","teamwork, collaboration, building", "lack of teamwork, disorganized, group conflict", false),
-    FOUR_COINS("Four of Coins","conservation, frugality, security", "greediness, stinginess, possessiveness", false),
-    FIVE_COINS("Five of Coins","need, poverty, insecurity", "recovery, charity, improvement", false),
-    SIX_COINS("Six of Coins","charity, generosity, sharing", "strings attached, stinginess, power and domination", false),
-    SEVEN_COINS("Seven of Coins","hard work, perseverance, diligence", "work without results, distractions, lack of rewards", false),
-    EIGHT_COINS("Eight of Coins","apprenticeship, passion, high standards", "lack of passion, uninspired, no motivation", false),
-    NINE_COINS("Nine of Coins","fruits of labor, rewards, luxury", "reckless spending, living beyond means, false success", false),
-    TEN_COINS("Ten of Coins","legacy, culmination, inheritance", "fleeting success, lack of stability, lack of resources", false),
-    PAGE_COINS("Page of Coins","ambition, desire, diligence", "lack of commitment, greediness, laziness", false),
-    KNIGHT_COINS("Knight of Coins","efficiency, hard work, responsibility", "laziness, obsessiveness, work without reward", false),
-    QUEEN_COINS("Queen of Coins","practicality, creature comforts, financial security", "self-centeredness, jealousy, smothering", false),
-    KING_COINS("King of Coins","abundance, prosperity, security", "greed, indulgence, sensuality", false)
+    // Pentacles
+    ACE_PENTACLES("Ace of Pentacles","opportunity, prosperity, new venture", "lost opportunity, missed chance, bad investment", false),
+    TWO_PENTACLES("Two of Pentacles","balancing decisions, priorities, adapting to change", "loss of balance, disorganized, overwhelmed", false),
+    THREE_PENTACLES("Three of Pentacles","teamwork, collaboration, building", "lack of teamwork, disorganized, group conflict", false),
+    FOUR_PENTACLES("Four of Pentacles","conservation, frugality, security", "greediness, stinginess, possessiveness", false),
+    FIVE_PENTACLES("Five of Pentacles","need, poverty, insecurity", "recovery, charity, improvement", false),
+    SIX_PENTACLES("Six of Pentacles","charity, generosity, sharing", "strings attached, stinginess, power and domination", false),
+    SEVEN_PENTACLES("Seven of Pentacles","hard work, perseverance, diligence", "work without results, distractions, lack of rewards", false),
+    EIGHT_PENTACLES("Eight of Pentacles","apprenticeship, passion, high standards", "lack of passion, uninspired, no motivation", false),
+    NINE_PENTACLES("Nine of Pentacles","fruits of labor, rewards, luxury", "reckless spending, living beyond means, false success", false),
+    TEN_PENTACLES("Ten of Pentacles","legacy, culmination, inheritance", "fleeting success, lack of stability, lack of resources", false),
+    PAGE_PENTACLES("Page of Pentacles","ambition, desire, diligence", "lack of commitment, greediness, laziness", false),
+    KNIGHT_PENTACLES("Knight of Pentacles","efficiency, hard work, responsibility", "laziness, obsessiveness, work without reward", false),
+    QUEEN_PENTACLES("Queen of Pentacles","practicality, creature comforts, financial security", "self-centeredness, jealousy, smothering", false),
+    KING_PENTACLES("King of Pentacles","abundance, prosperity, security", "greed, indulgence, sensuality", false)
     ;
     private String properName;
     private String normalMeaning;

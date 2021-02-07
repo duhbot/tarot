@@ -9,3 +9,6 @@
 ## intellij stuff
 /.idea
 *.iml
+
+## misc stuff
+nohup.out

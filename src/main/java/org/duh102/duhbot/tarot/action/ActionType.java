@@ -6,7 +6,7 @@ public enum ActionType {
 
     // You must put the default subs into this static method because it executes after the construction of both enums
     static {
-        READ.setDefaultSub(ActionSubtype.PASTPRESENTFUTURE);
+        READ.setDefaultSub(ActionSubtype.PAST_PRESENT_FUTURE);
     }
 
     private String actionString;
